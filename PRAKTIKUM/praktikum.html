@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+  		<title>Playlist JavaScript</title>
+  	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  	<script src="assets/js/jquery.min.js"></script>
+  	<script src="assets/js/popper.min.js"></script>
+  	<script src="assets/js/bootstrap.js"></script>
+  	<script type="text/javascript">
+  		var lagu = ["Martin Garrix & Pierce Fulton feat. Mike Shinoda - Waiting For Tomorrow.mp3","Joji - TEST DRIVE.mp3","Seventeen - Jangan Dulu Pergi.mp3"];
+  		var album = ["wait.jpg","Joji.jpg","svteen.jpeg"];
+  		function firstLoad() {
+  			// digunakan untuk menampilkan playlist
+  			for (var i = 0; i < lagu.length; i++) {
+  				var element = "";
+  				element += "<li class='list-group-item'; ";
+  				element += "onclick='choose("+i+")'>";
+  				element += lagu[i]+"</li>";
+  				document.getElementById('playlist').innerHTML += element;
+  			}
+  		}
+  		function choose(index) {
+  			var audio = document.getElementById('audio');
+  			audio.src = lagu[index];
+  			audio.play();
+
+  			var picture = document.getElementById('album');
+  			picture.src = album[index];
+  			picture.style.width = "100%";
+  		}
+  		function Play() {
+  			document.getElementById('audio').play();
+  		}
+  		function Pause() {
+  			document.getElementById('audio').pause();
+  		}
+  		function Stop() {
+  			document.getElementById('audio').pause();
+  			document.getElementById('audio').currentTime = 0;
+
+  		}
+  	</script>
+</head>
+<body onload="firstLoad();">
+  	<div class="container">
+  		<div class="card col-sm-12">
+  			<div class="card-header bg-primary text-white text-center">
+  				<h5>Playlist Music</h5>
+  			</div>
+  			<div class="card-body">
+  				<!-- membuat tempat gambat -->
+  				<div class="col-sm-5">
+  					<img src="" class="img" id="album">
+  				</div>
+  				<!-- membuat audio -->
+  				<audio src="" id="audio">
+  					
+  				</audio>
+  				<!-- button control -->
+  				<button type="button"class="col-sm-3 btn btn-warning" onclick="Pause();">
+  					Pause
+  				</button>
+  				<button type="button"class="col-sm-3 btn btn-success" onclick="Play();">
+  					Play
+  				</button>
+  				<button type="button"class="col-sm-3 btn btn-danger" onclick="Stop();">
+  					Stop
+  				</button>
+  				<!-- panggon playlist -->
+  			<div class="col-sm-12 list-group" id="playlist">
+  				
+  			</div>
+  			</div>
+  		</div>
+  	</div>
+</body>
+</html>
